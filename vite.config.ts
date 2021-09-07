@@ -1,25 +1,15 @@
 import path from 'path'
-import { defineConfig } from 'vite'
+import { ConfigEnv, defineConfig, UserConfigExport } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import styleImport from 'vite-plugin-style-import'
+// import styleImport from 'vite-plugin-style-import'
+import VitePluginElementPlus from 'vite-plugin-element-plus'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({mode}) => {
   plugins: [
     vue(),
-    styleImport({
-      libs: [
-        {
-          libraryName: "element-plus",
-          esModule: true,
-          ensureStyleFile: true,
-          resolveStyle: (name) => {
-            name = name.slice(3);
-            return `element-plus/packages/theme-chalk/src/${name}.scss`;
-          },
-          resolveComponent: (name) => `element-plus/lib/${name}`,
-        },
-      ],
+    VitePluginElementPlus({
+      format: mode === 'development' ? 'esm' : 'cjs',
     }),
   ],
   resolve: {

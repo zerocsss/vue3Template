@@ -3,6 +3,7 @@
   title="提示"
   v-model="dialogVisible"
   width="30%"
+  @close="closeDialog"
 >
   <span>这是一段信息</span>
   <template #footer>
@@ -19,5 +20,6 @@ import { defineProps } from 'vue';
 
 defineProps({
   dialogVisible: Boolean,
+  closeDialog: Function
 })
 </script>

@@ -1,14 +1,17 @@
 <template>
-  <Dialog :dialogVisible="dialogVisible"></Dialog>
+  <Dialog 
+  :dialogVisible="dialogVisible" 
+  :closeDialog="closeDialog"></Dialog>
   <el-button @click="dialogVisible = true">打开弹层</el-button>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import Dialog from './Dialog.vue'
-
 const dialogVisible = ref(false)
-
+const closeDialog = () => {
+  dialogVisible.value = false
+}
 
 </script>
 
